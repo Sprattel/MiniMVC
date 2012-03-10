@@ -5,6 +5,15 @@
  */
  class Config extends CoreConfig {
    
+   /*
+    * Get current environment development, live etc...
+    * @return string
+    */   
+   static function getEnvironment() {
+     if(file_exists('current'))
+      return 'development';
+     return 'live';
+   }
    
    static function getRoute() {
      return array(
@@ -22,6 +31,7 @@
    
    /*
     * Get theme
+    * @return string
     */
    static function getTheme() {
      return 'default';

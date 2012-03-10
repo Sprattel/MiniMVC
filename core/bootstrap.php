@@ -13,6 +13,19 @@ require_once "CoreController.php";
 
 require_once 'app/configs/config.php';
 
+
+//env setup
+if(Config::getEnvironment() == 'development') {
+  ini_set('display_errors', 'On');
+  ini_set('display_startup_errors', 'On');
+  error_reporting(-1);
+} else if(Config::getEnvironment() == 'live'){
+  ini_set('display_errors', 'Off');
+  ini_set('display_startup_errors', 'Off');
+  error_reporting(0);
+}
+
+
 //page lockup
 
 $router = new CoreRouter();
