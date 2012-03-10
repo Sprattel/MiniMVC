@@ -22,7 +22,7 @@ class CoreRouter {
   function getController() {
     if($this->controller)
       return $this->controller;
-    return 'index';
+    return CoreConfig::defaultController();
   }
 
   /**
@@ -32,7 +32,7 @@ class CoreRouter {
   function getMethod() {
     if($this->method)
       return $this->method;
-    return 'index';
+    return CoreConfig::defaultMethod();
   }
 
   /**
