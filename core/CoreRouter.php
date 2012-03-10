@@ -1,12 +1,18 @@
 <?php
 
 class CoreRouter {
-  var $segments = array();
-
+  var $controller = null;
+  var $method = null;
+  var $args = null;
+  
   function __construct() {
     $uri = explode('/', $_SERVER['REQUEST_URI']);
+    //remove empty element
     array_shift($uri);
-    $this->segments = $uri;
+    
+    $this->controller = array_shift($uri);
+    $this->method = array_shift($uri);
+    $this->args = $uri;
   }
 
   /**
@@ -14,8 +20,8 @@ class CoreRouter {
    * @return string
    */
   function getController() {
-    if(isset($this->segments[0]))
-      return $this->segments[0];
+    if($this->controller)
+      return $this->controller;
     return 'index';
   }
 
@@ -24,8 +30,8 @@ class CoreRouter {
    * @return string
    */
   function getMethod() {
-    if(isset($this->segments[1]))
-      return $this->segments[1];
+    if($this->method)
+      return $this->method;
     return 'index';
   }
 
@@ -34,7 +40,7 @@ class CoreRouter {
    * @return array
    */
   function getArgs() {
-    return array_slice($this->segments, 2);
+    return $this->args;
   }
 
 
