@@ -10,7 +10,7 @@ class Index extends CoreController {
     parent::__construct();
   }
 	
-  function index() {
+  function index() {    
     $this->viewVar('var', 'hej');
     $this->setPage(__FUNCTION__);
   }

@@ -11,6 +11,7 @@ class CoreController {
   private $viewVar = array();
   private $layoutVar = array();
   protected $router = array();
+  protected $db = null;
   function __construct() {
     
   }
@@ -20,6 +21,10 @@ class CoreController {
    */
   function setRouter($router) {
     $this->router = $router;
+  }
+  
+  function setDb($database) {
+    $this->db = $database;
   }
   
   function setPage($page) {

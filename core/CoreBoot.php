@@ -6,12 +6,17 @@
 class CoreBoot {
 	var $router = null;
   var $controller = null;
- 
+  var $database = null;
   
 	function init() {
 		$this->router = new CoreRouter();
     $this->controller = new CoreController();
 	}
+  
+  function loadDatabase() {
+    $this->database = new CoreDatabase();
+    $this->database->init();
+  }
   
   function loadController() {
     $controllerPath = ROOT_PATH.'/app/controllers/'.$this->router->getController().'.php';    
@@ -30,6 +35,7 @@ class CoreBoot {
     }
 
     $this->controller->setRouter($this->router);
+    $this->controller->setDb($this->database->getDb());
     
     if (method_exists($this->controller, $method))
       call_user_func_array(array($this->controller, $method), $this->router->getArgs());
@@ -41,10 +47,11 @@ class CoreBoot {
   }
   
   static function loadCoreFiles() {
-    require_once CORE_PATH."/CoreConfig.php";
-    require_once CORE_PATH."/CoreElement.php";
+    require_once CORE_PATH."/CoreConfig.php";    
+    require_once CORE_PATH."/CoreDatabase.php";
     require_once CORE_PATH."/CoreRouter.php";
     require_once CORE_PATH."/CoreController.php";    
+    require_once CORE_PATH."/CoreElement.php";
     require_once APP_PATH. '/configs/config.php';
   }
   

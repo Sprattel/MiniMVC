@@ -10,7 +10,7 @@
     * @return string
     */   
    static function getEnvironment() {
-     if(file_exists('current'))
+     if(file_exists(APP_PATH.'/configs/current'))
       return 'development';
      return 'live';
    }
@@ -45,21 +45,32 @@
      return 'default';
    }
    
+   
+   /*
+    * get database driver
+    * @return string
+    */
+   static function getDatabaseDriver() {
+     return 'mysql';
+   }
+   
   /*
    * Get the database login
    * @return array
    */
-  static function databaseConfig() {
+  static function getDatabaseConfig() {
     return array(
       'live' => array(
         'hostname' => 'localhost',
+        'database' => '',
         'username' => 'root',
         'password' => ''
       ),
       'development' => array(
         'hostname' => 'localhost',
+        'database' => 'minimce',
         'username' => 'root',
-        'password' => ''
+        'password' => 'local'
       )
     );
   }

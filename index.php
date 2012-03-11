@@ -14,5 +14,6 @@ CoreBoot::setupEnvironment();
 
 $boot = new CoreBoot();
 $boot->init();
+$boot->loadDatabase();
 $boot->loadController();
 echo $boot->render();
