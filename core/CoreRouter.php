@@ -20,7 +20,7 @@ class CoreRouter {
    * @return string
    */
   function getController() {
-    if($this->controller)
+    if(!empty($this->controller))
       return $this->controller;
     return CoreConfig::defaultController();
   }
@@ -30,7 +30,7 @@ class CoreRouter {
    * @return string
    */
   function getMethod() {
-    if($this->method)
+    if(!empty($this->method))
       return $this->method;
     return CoreConfig::defaultMethod();
   }

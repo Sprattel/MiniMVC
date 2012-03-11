@@ -12,7 +12,6 @@ class Index extends CoreController {
 	
   function index() {
     $this->viewVar('var', 'hej');
-    
     $this->setPage(__FUNCTION__);
   }
 }

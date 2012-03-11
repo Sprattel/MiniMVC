@@ -10,9 +10,16 @@ class CoreController {
   private $layout = null;
   private $viewVar = array();
   private $layoutVar = array();
-  
+  protected $router = array();
   function __construct() {
     
+  }
+  
+  /*
+   * 
+   */
+  function setRouter($router) {
+    $this->router = $router;
   }
   
   function setPage($page) {

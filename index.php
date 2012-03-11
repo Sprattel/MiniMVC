@@ -16,4 +16,3 @@ $boot = new CoreBoot();
 $boot->init();
 $boot->loadController();
 echo $boot->render();
-
