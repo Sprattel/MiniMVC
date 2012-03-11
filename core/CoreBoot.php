@@ -20,17 +20,19 @@ class CoreBoot {
     if(!file_exists($controllerPath)){
       header('HTTP/1.0 404 Not Found');
       require_once ROOT_PATH.'/app/controllers/error.php';
-      $strController = 'error';
+      $this->controller = new Error;
       $method = 'page_404';      
     } else {  
       require_once $controllerPath;
-      $strController = $this->router->getController();
+      $controller = $this->router->getController();
+      $this->controller = new $controller;
+      $method = $this->router->getMethod(); 
     }
-    
-    $this->controller = new $strController;
+
     $this->controller->setRouter($this->router);
-    if (method_exists($this->controller, $this->router->getMethod()))
-      call_user_func_array(array($this->controller, $this->router->getMethod()), $this->router->getArgs());
+    
+    if (method_exists($this->controller, $method))
+      call_user_func_array(array($this->controller, $method), $this->router->getArgs());
     
   }
   
