@@ -26,12 +26,12 @@ class CoreBoot {
       require_once $controllerPath;
       $strController = $this->router->getController();
     }
-    $this->controller = new $strController;
     
+    $this->controller = new $strController;
     $this->controller->setRouter($this->router);
-
-    if ((int)method_exists($this->controller, $this->router->getMethod()))
+    if (method_exists($this->controller, $this->router->getMethod()))
       call_user_func_array(array($this->controller, $this->router->getMethod()), $this->router->getArgs());
+    
   }
   
   function render() {
